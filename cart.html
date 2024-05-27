@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women's Wardrobe - Shopping Cart</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="Style.css" />
+    <style>
+        /* Add your custom styles here */
+        /* Example of a basic modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #d1aeae;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .close {
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section id="header">
+        <a href="#"><img src="image/logo.png" class="logo" alt=""></a>
+        <div>
+            <ul id="navbar">
+                <li><a href="E-commerce.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="lg-bag"><a class="active" href="cart.html"><i class="far fa-shopping-bag"></i></a></li>
+                <a href="#" id="close"><i class="far fa-times"></i></a>
+            </ul>
+        </div>
+        <div id="mobile">
+            <a href="cart.html"><i class="far fa-shopping-bag"></i></a>
+            <i id="bar" class="fas fa-outdent"></i>
+        </div>
+    </section>
+
+    <section id="page-header" class="about-header">
+        <h2>#let's_talk</h2>
+        <p>LEAVE A MESSAGE, We love to hear from you! </p>
+    </section>
+
+    <section id="cart" class="section-p1">
+        <table width="100%">
+            <thead>
+                <tr>
+                    <td>Remove</td>
+                    <td>Image</td>
+                    <td>Product</td>
+                    <td>Price</td>
+                    <td>Quantity</td>
+                    <td>Subtotal</td>
+                </tr>
+            </thead>
+            <tbody id="cartBody">
+                <!-- Cart items will be added dynamically here -->
+            </tbody>
+        </table>
+    </section>
+
+    <section id="cart-add" class="section-p1">
+        <div id="coupon">
+            <h3>Apply Coupon</h3>
+            <div>
+                <input type="text" placeholder="Enter your coupon">
+                <button class="normal">Apply</button>
+            </div>
+        </div>
+
+        <div id="subtotal">
+            <h3>Cart Totals</h3>
+            <table>
+                <tr>
+                    <td>Cart Subtotal</td>
+                    <td id="cartSubtotal">$0.00</td>
+                </tr>
+                <tr>
+                    <td>Shipping</td>
+                    <td>free</td>
+                </tr>
+                <tr>
+                    <td><strong>Total</strong></td>
+                    <td id="cartTotal"><strong>$ 0.00</strong></td>
+                </tr>
+            </table>
+            <button id="proceedToCheckout" class="normal" onclick="openPaymentModal()">Proceed to Checkout</button>
+        </div>
+    </section>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closePaymentModal()">&times;</span>
+            <h2>Payment Details</h2>
+            <!-- Include actual payment processing logic here -->
+            <p>Amount: <span id="paymentAmount">$0.00</span></p>
+            <button class="normal" onclick="processPayment()">Pay Now</button>
+        </div>
+    </div>
+
+    <!-- Product Templates -->
+    <template id="cartProductTemplate">
+        <tr>
+            <td><a href="#" class="removeItem" onclick="removeCartItem(this)"><i class="far fa-times-circle remove-icon"></i></a></td>
+            <td><img src="" alt="" class="productImage"></td>
+            <td class="productName"></td>
+            <td class="productPrice"></td>
+            <td><input type="number" value="1" class="productQuantity" onchange="updateSubtotal(this)"></td>
+            <td class="productSubtotal"></td>
+        </tr>
+    </template>
+
+    <footer class="section-p1">
+        <div class="col">
+            <img class="logo" src="image/logo.png" alt="">
+            <h4>Contact</h4>
+            <p><strong>Address: </strong> 562 Rameshnagar, street 45, Hyderabad</p>
+            <p><strong>Phone:</strong> +01 2222 365 / (+91) 98 9678 0908</p>
+            <p><strong>Hours:</strong> 10:00-18:00, Mon - Sat</p>
+            <div class="follow">
+                <h4>Follow Us</h4>
+                <div class="icon">
+                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-printerest-p"></i>
+                    <i class="fab fa-youtube"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h4>About</h4>
+            <a href="#">About us</a>
+            <a href="#">Delivery Information</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Contact Us</a>
+        </div>
+        <div class="col">
+            <h4>My Account</h4>
+            <a href="#">Sign in</a>
+            <a href="#">View Cart</a>
+            <a href="#">My wishlist</a>
+            <a href="#">Track My Order</a>
+            <a href="#">Help</a>
+        </div>
+        <div class="col install">
+            <h4>Install App</h4>
+            <p>From App Store or Google Play</p>
+            <div class="row">
+                <img src="https://img.favpng.com/24/14/19/app-store-download-google-play-png-favpng-kmK8gWr5qM92jcmvs0pb0LaBC.jpg" alt="logo" height="50px" width="150px">
+                <img src="https://logos-world.net/wp-content/uploads/2020/12/Google-Play-Logo.png" alt="logo" height="50px" width="150px">
+            </div>
+            <p>Secured Payments Gateways</p>
+            <img src="https://w7.pngwing.com/pngs/805/227/png-transparent-paypal-the-next-level-service-payment-gateway-industry-paypal-text-payment-logo.png" alt="logo" height="40px" width="250px">
+        </div>
+        <div class="copyright">
+            <p>@2024 - Our sweet Women Wardrobe</p>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Example: Add items to the cart dynamically
+            addItemToCart("Cartoon Astronaut T-shirts", "$200.19", "https://m.media-amazon.com/images/W/MEDIAX_792452-T1/images/I/61XtjzaOxUL._SX679_.jpg");
+            addItemToCart("Another Product", "$150.00", "https://assets.ajio.com/medias/sys_master/root/20230628/DF17/649bab27eebac147fc1c6850/-473Wx593H-465829666-offwhite-MODEL.jpg");
+        });
+
+        function addItemToCart(name, price, imageUrl) {
+            var cartBody = document.getElementById("cartBody");
+            var template = document.getElementById("cartProductTemplate");
+
+            // Clone the template content
+            var clone = document.importNode(template.content, true);
+
+            // Set the product details
+            clone.querySelector(".productName").innerText = name;
+            clone.querySelector(".productPrice").innerText = price;
+            clone.querySelector(".productImage").src = imageUrl;
+
+            // Append the clone to the cart body
+            cartBody.appendChild(clone);
+        }
+
+        function removeCartItem(button) {
+            var rowToRemove = button.closest("tr");
+            rowToRemove.remove();
+            calculateCartTotal();
+        }
+
+        function calculateCartTotal() {
+            var cartSubtotal = 0;
+            var productRows = document.querySelectorAll("#cartBody tr");
+            productRows.forEach(function (row) {
+                var price = parseFloat(row.querySelector(".productPrice").innerText.replace("$", ""));
+                var quantity = parseInt(row.querySelector(".productQuantity").value);
+                var subtotal = price * quantity;
+                row.querySelector(".productSubtotal").innerText = "$" + subtotal.toFixed(2);
+                cartSubtotal += subtotal;
+            });
+
+            document.getElementById("cartSubtotal").innerText = "$" + cartSubtotal.toFixed(2);
+            document.getElementById("cartTotal").innerText = "$" + cartSubtotal.toFixed(2);
+            document.getElementById("paymentAmount").innerText = "$" + cartSubtotal.toFixed(2);
+        }
+
+        function updateSubtotal(input) {
+            var row = input.closest("tr");
+            var price = parseFloat(row.querySelector(".productPrice").innerText.replace("$", ""));
+            var quantity = parseInt(input.value);
+            var subtotal = price * quantity;
+            row.querySelector(".productSubtotal").innerText = "$" + subtotal.toFixed(2);
+            calculateCartTotal();
+        }
+
+        function openPaymentModal() {
+            calculateCartTotal();
+            var modal = document.getElementById("paymentModal");
+            modal.style.display = "flex";
+        }
+
+        function closePaymentModal() {
+            var modal = document.getElementById("paymentModal");
+            modal.style.display = "none";
+        }
+
+        function processPayment() {
+            // Include actual payment processing logic here
+            alert("Payment successful! Thank you for your purchase.");
+            closePaymentModal();
+        }
+    </script>
+
+
+</body>
+
+</html>
