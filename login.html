@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Women's Wardrobe</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url("https://png.pngtree.com/background/20230617/original/pngtree-contemporary-loft-style-walk-in-closet-in-sleek-black-with-clothing-picture-image_3707816.jpg") no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .login-container {
+            background-color: rgba(50, 48, 57, 0.9); /* Adjust the alpha (fourth parameter) for transparency */
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7); /* Adjust the alpha for box shadow */
+            overflow: hidden;
+            width: 300px;
+            max-width: 90%;
+            margin: 20px;
+        }
+
+        .login-form {
+            padding: 20px;
+            text-align: center;
+            color: white; /* Text color for better visibility on a transparent background */
+        }
+
+        h1 {
+            color: rgb(247, 240, 240); /* Text color for better visibility on a transparent background */
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            color: rgb(249, 246, 246); /* Text color for better visibility on a transparent background */
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid rgba(216, 7, 7, 0.025);
+            border-radius: 4px;
+            margin-top: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            font-size: 16px;
+            background: rgba(245, 247, 247, 0.5); /* Adjust the alpha for input background */
+            color: black; /* Input text color */
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #0ede49;
+            color: black; /* Button text color */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #3312f0;
+        }
+
+        .bottom-text {
+            margin-top: 20px;
+            font-size: 14px;
+            color: rgb(222, 17, 17); /* Text color for better visibility on a transparent background */
+        }
+
+        a {
+            color: rgb(211, 66, 66);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #ed06a8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-container">
+        <form class="login-form" id="loginForm">
+            <h1>Login</h1>
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit">Login</button>
+            <div class="bottom-text">
+                <a href="#">Forgot password?</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log("DOMContentLoaded event fired!");
+
+            document.getElementById('loginForm').addEventListener('submit', function (e) {
+                e.preventDefault(); // Prevent the default form submission
+
+                var username = document.getElementById("username").value;
+                var password = document.getElementById("password").value;
+
+                if (username === "" || password === "") {
+                    alert("Please enter both username and password.");
+                    return;
+                }
+
+                // Perform your login logic here
+                // For now, simulate a successful login
+                alert("Login successful!");
+                
+                localStorage.setItem('isLoggedIn', 'true');
+                // Redirect to the E-commerce page after successful login
+                window.location.href = "E-commerce.html";
+            });
+        });
+    </script>
+
+</body>
+
+</html>
